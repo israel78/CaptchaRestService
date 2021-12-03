@@ -8,11 +8,11 @@
 		<version>2.5.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>es.beonit.prices</groupId>
-	<artifactId>prices-back</artifactId>
+	<groupId>es.exec.captcha</groupId>
+	<artifactId>captcha-back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>prices</name>
-	<description>Prices</description>
+	<name>captcha</name>
+	<description>captcha</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

@@ -14,4 +14,5 @@ public class BeanConfig {
         return registrationBean;
     }
 
+
 }

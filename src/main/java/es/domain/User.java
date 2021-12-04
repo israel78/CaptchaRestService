@@ -19,11 +19,13 @@ public class User {
     @Column(name = "PASS")
     private String passw;
 
-
+    @Transient
+    private String captcha;
 
     public User(String firstName, String passw) {
         this.firstName = firstName;
         this.passw = passw;
+        this.captcha = "";
 
     }
 

@@ -22,6 +22,7 @@ public class CaptchaApplication extends SpringBootServletInitializer {
 		SpringApplication.run(CaptchaApplication.class, args);
 	}
 
+
 	@PostConstruct
 	public void init(){
 		// Setting Spring Boot SetTimeZone

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 @PropertySource("classpath:variables.properties")
 @RestController
-@Scope("application")
+@Scope("session")
 @RequestMapping("/api/captcha/config")
 public class SettingsController {
 
@@ -27,8 +27,9 @@ public class SettingsController {
 
     @Value( "${api.key}" )
     private String key;
+    @CrossOrigin(value = "http://localhost:8080", allowCredentials = "true")
     @RequestMapping(value = "/getsettings")
-    public ResponseEntity<CaptchaSettings> getPriceResponse(
+    public ResponseEntity<CaptchaSettings> getSettings(
             @RequestHeader(name = "Authorization") String apiKey,
             HttpSession session
     ) {
@@ -40,7 +41,8 @@ public class SettingsController {
             return new ResponseEntity<CaptchaSettings>(captchaSettingsResponse, HttpStatus.UNAUTHORIZED);
         }
     }
-    @RequestMapping(value = "/setsettings")
+    @CrossOrigin(value = "http://localhost:8080", allowCredentials = "true")
+    @PostMapping (value = "/setsettings")
     public ResponseEntity<CaptchaSettings> setPriceResponse(
             @RequestHeader(name = "Authorization") String apiKey,
             @RequestBody CaptchaSettings captchaSettings,

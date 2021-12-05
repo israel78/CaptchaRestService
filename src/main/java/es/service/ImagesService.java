@@ -1,5 +1,7 @@
 package es.service;
 
+import es.domain.ImagesDataResponse;
+
 import java.util.ArrayList;
 
 public interface ImagesService {

@@ -31,12 +31,10 @@ public class ImagesServiceImpl implements ImagesService {
                     //todo mapeo objeto primera parte
                     JSONObject result2 = imagesRest.callapi(i.toString(),"Description");
                     //todo segundo mapeo
-                    ImagesDataResponse imagesDataResponse = mapper.readValue(result,result2, ImagesDataResponse.class);
+                    result.put("object2",result2);
+                    ImagesDataResponse imagesDataResponse = mapper.readValue(result.toString(), ImagesDataResponse.class);
                     imagesDataResponseArrayList.add(imagesDataResponse);
                 } //OnNext
-
-
-
         );
         return imagesDataResponseArrayList;
     }

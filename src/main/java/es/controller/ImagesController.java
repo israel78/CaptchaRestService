@@ -1,6 +1,7 @@
 package es.controller;
 
 import es.domain.CaptchaSettings;
+import es.domain.ImagesDataResponse;
 import es.domain.ResponseValues;
 import es.domain.User;
 import es.service.ImagesService;
@@ -30,11 +31,11 @@ public class ImagesController {
     private String key;
     @CrossOrigin(value = "http://localhost:8080", allowCredentials = "true")
     @RequestMapping(value = "/processimages", produces = "application/json")
-    public ArrayList<ImagesDataResponse> processImages(@RequestBody ArrayList<String> urlList,
-                                                        @RequestHeader(name = "Authorization") String token,
-                                                        HttpSession session) {
+    public ResponseEntity <ArrayList<ImagesDataResponse>> processImages(@RequestBody ArrayList<String> urlList,
+                                                       @RequestHeader(name = "Authorization") String token,
+                                                       HttpSession session) {
 
-        return new ResponseEntity<>( service.getProcessImages(urlList), HttpStatus.OK);
+        return new ResponseEntity <ArrayList<ImagesDataResponse>> ( service.getProcessImages(urlList), HttpStatus.OK);
     }
 }
 

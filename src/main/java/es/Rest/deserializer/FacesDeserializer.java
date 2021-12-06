@@ -5,19 +5,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import es.domain.ImagesDataResponse;
-import es.domain.faceRectangleResponse;
-import es.domain.faceResponse;
+import es.domain.FaceRectangleResponse;
+import es.domain.FaceResponse;
 
 import java.io.IOException;
 
-public class FacesDeserializer extends JsonDeserializer<faceResponse> {
+public class FacesDeserializer extends JsonDeserializer<FaceResponse> {
     @Override
-    public faceResponse deserialize(JsonParser p, DeserializationContext ctxt)
+    public FaceResponse deserialize(JsonParser p, DeserializationContext ctxt)
             throws IOException, JsonProcessingException {
         JsonNode node = p.getCodec().readTree(p);
-        faceResponse faceResponse = new faceResponse();
-        faceRectangleResponse faceRectangleResponse = new faceRectangleResponse();
+        FaceResponse faceResponse = new FaceResponse();
+        FaceRectangleResponse faceRectangleResponse = new FaceRectangleResponse();
         faceResponse.setAge(node.get("age")!=null?node.get("age").asInt():0);
         faceResponse.setGender(node.get("gender")!=null?node.get("gender").asText():null);
         if(node.get("faceRectangle")!=null){

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import es.domain.DescriptionResponse;
 import es.domain.ImagesDataResponse;
-import es.domain.faceResponse;
+import es.domain.FaceResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,10 +23,10 @@ public class ImagesInfoDeserializer extends JsonDeserializer<ImagesDataResponse>
         if(node.get("faces")!=null&&node.get("faces").get(0)!=null){
             ObjectMapper mapper = new ObjectMapper();
             SimpleModule module = new SimpleModule();
-            module.addDeserializer(faceResponse.class, new FacesDeserializer());
+            module.addDeserializer(FaceResponse.class, new FacesDeserializer());
             mapper.registerModule(module);
-            TypeReference<ArrayList<faceResponse>> tRef = new TypeReference<ArrayList<faceResponse>>() {};
-            ArrayList <faceResponse> gradesList = mapper.readValue(node.get("faces").toString(), tRef);
+            TypeReference<ArrayList<FaceResponse>> tRef = new TypeReference<ArrayList<FaceResponse>>() {};
+            ArrayList <FaceResponse> gradesList = mapper.readValue(node.get("faces").toString(), tRef);
             imagesDataResponse.setFaceResponseList(gradesList);
             mapper = new ObjectMapper();
             module = new SimpleModule();

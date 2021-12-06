@@ -3,7 +3,7 @@ package es.domain;
 import lombok.Data;
 
 @Data
-public class faceRectangleResponse {
+public class FaceRectangleResponse {
 
    private int top;
    private int left;

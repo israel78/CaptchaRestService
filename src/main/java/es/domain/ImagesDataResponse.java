@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 public class ImagesDataResponse implements Serializable {
 
-    private List<faceResponse> faceResponseList;
+    private List<FaceResponse> faceResponseList;
     private DescriptionResponse descriptionResponse;
 }

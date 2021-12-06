@@ -1,6 +1,6 @@
 Proyecto con un servicio web que consta de 3 end-points:
-Settings para configurar captcha en la aplicación Captcha-front
-Captcha, para back de front de la aplicación Captcha-front
+Settings para configurar captcha en la aplicación Captcha-front.
+Captcha, para back de front de la aplicación Captcha-front.
 Images, end-point para pasar peticiones con un body y autenticacion.
 
 El formato del body para las peticiones de imágenes es:

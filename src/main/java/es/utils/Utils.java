@@ -1,6 +1,6 @@
 package es.utils;
 
-import es.domain.CaptchaSettings;
+import es.captcha.domain.CaptchaSettings;
 import es.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,9 +11,9 @@ public class Utils {
 
     @Autowired
     Service service;
-    static char num[] = { '0', '1', '2', '3', '4', '5' };
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+    static char num[] = { '0', '1', '2', '3', '4', '5','6', '7', '8', '9'};
+    private static final SecureRandom secureRandom = new SecureRandom();
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
 
     public static String generateNewCaptcha(CaptchaSettings captchaSettings) {
 
@@ -35,6 +35,6 @@ public class Utils {
     }
 
     public static char randomNum() {
-        return num[(int) Math.floor(Math.random() * 5)];
+        return num[(int) Math.floor(Math.random() * 10)];
     }
 }

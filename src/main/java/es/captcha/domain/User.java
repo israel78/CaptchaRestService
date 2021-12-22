@@ -1,9 +1,7 @@
-package es.domain;
+package es.captcha.domain;
 
 import lombok.Data;
-
 import javax.persistence.*;
-
 @Data
 @Entity
 @Table(name = "USER")
@@ -28,7 +26,6 @@ public class User {
         this.captcha = "";
 
     }
-
     public User() {
 
     }

@@ -1,6 +1,6 @@
 package es.service;
 
-import es.domain.ImagesDataResponse;
+import es.captcha.domain.ImagesDataResponse;
 
 import java.util.ArrayList;
 

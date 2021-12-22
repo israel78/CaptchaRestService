@@ -1,8 +1,8 @@
-package es.controller;
+package es.captcha.controller;
 
-import es.domain.CaptchaSettings;
-import es.domain.ResponseValues;
-import es.domain.User;
+import es.captcha.domain.CaptchaSettings;
+import es.captcha.domain.ResponseValues;
+import es.captcha.domain.User;
 import es.service.Service;
 import es.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +12,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
-import java.security.SecureRandom;
-import java.text.ParseException;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-
-import static es.utils.Utils.generateNewToken;
 
 @PropertySource("classpath:variables.properties")
 @RestController

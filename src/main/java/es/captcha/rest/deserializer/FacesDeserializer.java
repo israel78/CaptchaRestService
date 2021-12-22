@@ -1,12 +1,12 @@
-package es.Rest.deserializer;
+package es.captcha.rest.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
-import es.domain.FaceRectangleResponse;
-import es.domain.FaceResponse;
+import es.captcha.domain.FaceRectangleResponse;
+import es.captcha.domain.FaceResponse;
 
 import java.io.IOException;
 

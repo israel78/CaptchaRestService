@@ -1,4 +1,4 @@
-package es.Rest;
+package es.captcha.rest;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +12,9 @@ public class ImagesRest {
     @Value( "${api.key.images}" )
     private String API_KEY;
 
+    @Value("${api.url.images}")
+    private String IMAGES_API_URL;
+
     public JSONObject callapi(String url,String mode){
         OkHttpClient client = new OkHttpClient();
         MediaType mediaType = MediaType.parse("application/json");
@@ -19,7 +22,7 @@ public class ImagesRest {
                 RequestBody.create(mediaType,
                         "{\r\"url\": \""+url+"\"\r}");
         Request request = new Request.Builder()
-                .url("https://microsoft-computer-vision3.p.rapidapi.com/analyze?language=es&visualFeatures="+mode+"&details=Celebrities")
+                .url(IMAGES_API_URL+"?language=es&visualFeatures="+mode+"&details=Celebrities")
                 .post(body)
                 .addHeader("content-type", "application/json")
                 .addHeader("x-rapidapi-host", "microsoft-computer-vision3.p.rapidapi.com")
@@ -32,7 +35,6 @@ public class ImagesRest {
             jsonData = response.body().string();
         }catch (Exception e){
         }
-
         return new JSONObject(jsonData);
     }
 

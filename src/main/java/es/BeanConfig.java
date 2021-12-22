@@ -13,6 +13,4 @@ public class BeanConfig {
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
     }
-
-
 }

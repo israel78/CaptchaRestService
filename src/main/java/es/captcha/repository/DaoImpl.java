@@ -1,24 +1,25 @@
-package es.repository;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import  java.util.List;
+package es.captcha.repository;
 
+import  java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
-
-import es.domain.User;
-import es.domain.CaptchaSettings;
+import es.captcha.domain.User;
+import es.captcha.domain.CaptchaSettings;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@PropertySource("classpath:variables.properties")
 @Repository
 public class DaoImpl implements Dao {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Value("${default.id.settings}")
+    private String SETTINGS_ID;
 
     public CaptchaSettings getCaptaSettings() {
         CriteriaQuery<CaptchaSettings> criteriaQuery = em.getCriteriaBuilder().createQuery(CaptchaSettings.class);
@@ -35,7 +36,7 @@ public class DaoImpl implements Dao {
         update.set("numCharact", captchaSettings.getNumCharact());
         update.set("attemps", captchaSettings.getAttemps());
         update.set("alfa", captchaSettings.isAlfa());
-        update.where(cb.equal(e.get("id"), 1));
+        update.where(cb.equal(e.get("id"), Integer.parseInt(SETTINGS_ID)));
         this.em.createQuery(update).executeUpdate();
         return true;
     };

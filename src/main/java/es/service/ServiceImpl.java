@@ -1,10 +1,8 @@
 package es.service;
-import java.util.Date;
 
-import es.repository.Dao;
-import es.domain.CaptchaSettings;
+import es.captcha.repository.Dao;
+import es.captcha.domain.CaptchaSettings;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 @org.springframework.stereotype.Service
 public class ServiceImpl implements Service {

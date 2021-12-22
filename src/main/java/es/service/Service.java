@@ -1,14 +1,11 @@
 package es.service;
 
-
-import es.domain.CaptchaSettings;
-
-import java.util.Date;
+import es.captcha.domain.CaptchaSettings;
 
 public interface Service {
-    public CaptchaSettings getCaptchaSettings();
-    public boolean setCaptchaSettings(CaptchaSettings captchaSettings);
-    public boolean login(String userName, String pass);
-    public String getUserId(String userName);
+    CaptchaSettings getCaptchaSettings();
+    boolean setCaptchaSettings(CaptchaSettings captchaSettings);
+    boolean login(String userName, String pass);
+    String getUserId(String userName);
 
 }

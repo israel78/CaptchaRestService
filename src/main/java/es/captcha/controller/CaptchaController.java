@@ -25,7 +25,7 @@ public class CaptchaController {
 
     @Value( "${api.key}" )
     private String key;
-    @CrossOrigin(origins = {"http://localhost:8080,https://captcha-front.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(value = {"http://localhost:8080,https://captcha-front.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/login", produces = "application/json")
     public ResponseEntity<ResponseValues> login(@RequestBody User user,
                                                      HttpSession session) {
@@ -59,7 +59,7 @@ public class CaptchaController {
             return new ResponseEntity<>(result, HttpStatus.UNAUTHORIZED);
         }
     }
-    @CrossOrigin(origins = {"http://localhost:8080,https://captcha-front.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(value = {"http://localhost:8080,https://captcha-front.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/getcaptcha")
     public ResponseEntity <ResponseValues> setPriceResponse(
             @RequestHeader(name = "Authorization") String apiKey,

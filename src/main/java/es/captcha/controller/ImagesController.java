@@ -23,7 +23,7 @@ public class ImagesController {
 
     @Value( "${api.key}" )
     private String key;
-    @CrossOrigin(origins = {"http://localhost:8080,https://captcha-front.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(value = {"http://localhost:8080,https://captcha-front.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/processimages", produces = "application/json")
     public ResponseEntity <ArrayList<ImagesDataResponse>> processImages(@RequestBody ArrayList<String> urlList,
                                                                         @RequestHeader(name = "Authorization") String token,

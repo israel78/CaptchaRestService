@@ -29,6 +29,7 @@ public class CaptchaController {
     @RequestMapping(value = "/login", produces = "application/json")
     public ResponseEntity<ResponseValues> login(@RequestBody User user,
                                                      HttpSession session) {
+       System.out.println(session.getAttribute("Captcha")+":"+user.getCaptcha());
         ResponseValues result = new ResponseValues();
         if (service.login(user.getFirstName(), user.getPassw())) {
             if(session.getAttribute("Captcha")==null

@@ -27,7 +27,7 @@ public class SettingsController {
             @RequestHeader(name = "Authorization") String apiKey
     ) {
         CaptchaSettings captchaSettingsResponse = new CaptchaSettings();
-        if (apiKey != null && apiKey.equals(key)) {
+        if (apiKey != null && apiKey.equals(key)){
             captchaSettingsResponse = service.getCaptchaSettings();
             return new ResponseEntity<CaptchaSettings>(captchaSettingsResponse, HttpStatus.OK);
         } else {

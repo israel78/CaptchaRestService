@@ -61,6 +61,24 @@ public class CaptchaController {
         }
     }
     @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com"}, allowCredentials = "true")
+    @RequestMapping(value = "/loginwithoutsession", produces = "application/json")
+    public ResponseEntity<ResponseValues> login2(@RequestBody User user,
+                                                HttpSession session) {
+        System.out.println(session.getAttribute("Captcha")+":"+user.getCaptcha());
+        ResponseValues result = new ResponseValues();
+        if (service.login(user.getFirstName(), user.getPassw())) {
+                String token = Utils.generateNewToken();
+                result.setKey(token);
+                result.setValue(service.getUserId(user.getFirstName()));
+                session.setAttribute("Token", token);
+                session.setAttribute("attemps", "0");
+                return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            result.setValue("Usuario no autorizado");
+            return new ResponseEntity<>(result, HttpStatus.UNAUTHORIZED);
+        }
+    }
+    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/getcaptcha")
     public ResponseEntity <ResponseValues> setPriceResponse(
             @RequestHeader(name = "Authorization") String apiKey,
@@ -69,8 +87,9 @@ public class CaptchaController {
         ResponseValues result = new ResponseValues();
        CaptchaSettings captchaSettings = service.getCaptchaSettings();
         String newCaptcha = Utils.generateNewCaptcha(captchaSettings);
-        session.setAttribute("Captcha",newCaptcha);
-        session.setAttribute("attemps","0");
+      //El servidor Heroku en su version de no pago no permite trabajar con sesiones
+      //  session.setAttribute("Captcha",newCaptcha);
+      //  session.setAttribute("attemps","0");
         if (apiKey != null && apiKey.equals(key)) {
             result.setKey(newCaptcha);
             result.setValue(String.valueOf(captchaSettings.getAttemps()));

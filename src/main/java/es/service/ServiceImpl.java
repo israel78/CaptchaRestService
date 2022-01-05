@@ -1,5 +1,6 @@
 package es.service;
 
+import es.captcha.domain.User;
 import es.captcha.repository.Dao;
 import es.captcha.domain.CaptchaSettings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,12 @@ public class ServiceImpl implements Service {
          return String.valueOf(dao.getUsers().stream()
                 .filter(u -> u.getFirstName().equals(userName))
                 .findAny().orElse(null).getId());
+
+    }
+    public User getUserById(int id) {
+        return dao.getUsers().stream()
+                .filter(u -> u.getId()==id)
+                .findAny().orElse(null);
 
     }
 

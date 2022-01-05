@@ -32,7 +32,7 @@ public class User {
     private String lineGraphicNameTree;
 
     @JoinColumn(name = "user_id")
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<GraphicValues> GraphicValuesList;
 
     @Transient

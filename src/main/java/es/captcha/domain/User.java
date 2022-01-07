@@ -19,21 +19,12 @@ public class User {
     @Column(name = "PASS")
     private String passw;
 
+    @OneToOne
+    @JoinColumn(name="graphic_id")
+    private Graphic graphic;
+
     @Column(name = "important_phrase")
     private String importantPhrase;
-
-    @Column(name = "line_graphic_name_one")
-    private String lineGraphicNameOne;
-
-    @Column(name = "line_graphic_name_two")
-    private String lineGraphicNameTwo;
-
-    @Column(name = "line_graphic_name_tree")
-    private String lineGraphicNameTree;
-
-    @JoinColumn(name = "user_id")
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<GraphicValues> GraphicValuesList;
 
     @Transient
     private String captcha;

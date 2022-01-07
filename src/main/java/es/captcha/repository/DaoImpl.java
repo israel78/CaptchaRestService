@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import es.captcha.domain.User;
 import es.captcha.domain.CaptchaSettings;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
@@ -44,5 +45,10 @@ public class DaoImpl implements Dao {
         CriteriaQuery<User> criteriaQuery = em.getCriteriaBuilder().createQuery(User.class);
         criteriaQuery.select(criteriaQuery.from(User.class));
         return em.createQuery(criteriaQuery).getResultList();
+    }
+    @Transactional
+    public void saveOrUpdateUser(User user){
+        Session session = em.unwrap(Session.class);
+        session.saveOrUpdate(user);
     }
 }

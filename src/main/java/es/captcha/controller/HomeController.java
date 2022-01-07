@@ -31,10 +31,29 @@ public class HomeController {
 
     @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @GetMapping(value = "/getgraphicdataandphrase", produces = "application/json")
-    public ResponseEntity<User> getGraphicDataAndPhrase(@RequestHeader(name = "Authorization") String apiKey) {
+    public ResponseEntity<User> getGraphicDataAndPhrase(@RequestHeader(name = "Authorization") String apiKey
+   ,@RequestParam(name="userid") int userId) {
         if(apiKey.equals(key))
-            return new ResponseEntity<User>(service.getUserById(userIdDefault), HttpStatus.OK);
+            return new ResponseEntity<User>(service.getUserById(userId), HttpStatus.OK);
         else
             return new ResponseEntity<User>(new User(), HttpStatus.UNAUTHORIZED);
+    }
+    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @PostMapping(value = "/setmportantphrase", produces = "application/json")
+    public ResponseEntity<ResponseValues> setImportantPhrase(@RequestHeader(name = "Authorization") String apiKey,
+                                                   @RequestBody User user) {
+        ResponseValues result = new ResponseValues();
+        if(apiKey.equals(key)){
+        User userIn =    service.getUserById(user.getId());
+        userIn.setImportantPhrase(user.getImportantPhrase());
+            service.saveOrUpdateUser(userIn);
+            result.setKey("resultado");
+            result.setValue("Frase actualizada correctamente");
+            return new ResponseEntity<ResponseValues>(result, HttpStatus.OK);
+        } else {
+            result.setKey("resultado");
+            result.setValue("No tienes permisos para realizar la operación");
+            return new ResponseEntity<ResponseValues>(result, HttpStatus.UNAUTHORIZED);
+        }
     }
 }

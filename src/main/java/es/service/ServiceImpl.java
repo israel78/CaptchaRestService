@@ -35,6 +35,9 @@ public class ServiceImpl implements Service {
                 .findAny().orElse(null);
 
     }
+    public void saveOrUpdateUser(User user){
+        dao.saveOrUpdateUser(user);
+    }
 
 }
 

@@ -8,4 +8,5 @@ public interface Dao {
     CaptchaSettings getCaptaSettings();
     boolean setCaptaSettings(CaptchaSettings captchaSettings);
     List<User> getUsers();
+    void saveOrUpdateUser(User user);
 }

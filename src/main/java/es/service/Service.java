@@ -10,4 +10,5 @@ public interface Service {
     boolean login(String userName, String pass);
     String getUserId(String userName);
     User getUserById(int id);
+    void saveOrUpdateUser(User user);
 }

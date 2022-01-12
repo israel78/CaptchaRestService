@@ -4,6 +4,9 @@ import  java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
+
+import es.captcha.domain.Graphic;
+import es.captcha.domain.GraphicValues;
 import es.captcha.domain.User;
 import es.captcha.domain.CaptchaSettings;
 import org.hibernate.Session;
@@ -49,6 +52,24 @@ public class DaoImpl implements Dao {
     @Transactional
     public void saveOrUpdateUser(User user){
         Session session = em.unwrap(Session.class);
-        session.saveOrUpdate(user);
+        try {
+            session.saveOrUpdate(user);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+    @Transactional
+    public void saveOrUpdateGraphicData(GraphicValues graphicsValues){
+        Session session = em.unwrap(Session.class);
+        session.saveOrUpdate(graphicsValues);
+    }
+
+    @Transactional
+    public void mergeGraphic(Graphic graphic){
+        Session session = em.unwrap(Session.class);
+        session.merge(graphic);
     }
 }

@@ -1,9 +1,6 @@
 package es.captcha.controller;
 
-import es.captcha.domain.CaptchaSettings;
-import es.captcha.domain.GraphicValues;
-import es.captcha.domain.ResponseValues;
-import es.captcha.domain.User;
+import es.captcha.domain.*;
 import es.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,6 +44,23 @@ public class HomeController {
         User userIn =    service.getUserById(user.getId());
         userIn.setImportantPhrase(user.getImportantPhrase());
             service.saveOrUpdateUser(userIn);
+            result.setKey("resultado");
+            result.setValue("Frase actualizada correctamente");
+            return new ResponseEntity<ResponseValues>(result, HttpStatus.OK);
+        } else {
+            result.setKey("resultado");
+            result.setValue("No tienes permisos para realizar la operación");
+            return new ResponseEntity<ResponseValues>(result, HttpStatus.UNAUTHORIZED);
+        }
+    }
+    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @PostMapping(value = "/setgraphicdata", produces = "application/json")
+    public ResponseEntity<ResponseValues> setGraphicData(@RequestHeader(name = "Authorization") String apiKey,
+                                                             @RequestBody Graphic graphic,
+                                                             @RequestParam (name="userid") int userId) {
+        ResponseValues result = new ResponseValues();
+        if(apiKey.equals(key)){
+            service.saveOrUpdateGraphicAndGraphicData(graphic);
             result.setKey("resultado");
             result.setValue("Frase actualizada correctamente");
             return new ResponseEntity<ResponseValues>(result, HttpStatus.OK);

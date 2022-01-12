@@ -1,5 +1,6 @@
 package es.captcha.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,4 +24,8 @@ public class GraphicValues {
     @Column(name = "y_value_tree", nullable = false)
     private String yValue3;
 
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "graphic_id")
+    private Graphic graphic;
 }

@@ -1,9 +1,15 @@
 package es.service;
 
+import es.captcha.domain.Graphic;
+import es.captcha.domain.GraphicValues;
 import es.captcha.domain.User;
 import es.captcha.repository.Dao;
 import es.captcha.domain.CaptchaSettings;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Service
 public class ServiceImpl implements Service {
@@ -38,6 +44,8 @@ public class ServiceImpl implements Service {
     public void saveOrUpdateUser(User user){
         dao.saveOrUpdateUser(user);
     }
-
+    public void saveOrUpdateGraphicAndGraphicData(Graphic graphic){
+        dao.mergeGraphic(graphic);
+    }
 }
 

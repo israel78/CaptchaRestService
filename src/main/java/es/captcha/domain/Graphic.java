@@ -1,5 +1,6 @@
 package es.captcha.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,8 +29,8 @@ public class Graphic {
     @Column(name = "line_graphic_name_tree")
     private String lineGraphicNameTree;
 
-    @JoinColumn(name = "graphic_id")
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<GraphicValues> GraphicValuesList;
+    @JsonManagedReference
+    @OneToMany(orphanRemoval = true,mappedBy="graphic", cascade=CascadeType.ALL)
+    private List<GraphicValues> graphicValuesList;
 
 }

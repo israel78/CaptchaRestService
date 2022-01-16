@@ -3,12 +3,10 @@ package es.captcha.repository;
 import  java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.*;
 
-import es.captcha.domain.Graphic;
-import es.captcha.domain.GraphicValues;
-import es.captcha.domain.User;
-import es.captcha.domain.CaptchaSettings;
+import es.captcha.domain.*;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -71,5 +69,16 @@ public class DaoImpl implements Dao {
     public void mergeGraphic(Graphic graphic){
         Session session = em.unwrap(Session.class);
         session.merge(graphic);
+    }
+
+    public List<Experience> getExperiencesByUser(int userId){
+        Session session = em.unwrap(Session.class);
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Experience> cr = cb.createQuery(Experience.class);
+        Root<Experience> root = cr.from(Experience.class);
+        Join<Experience, User> joinUser = root.join("user", JoinType.INNER);
+        cr.select(root).where(cb.equal(joinUser.get("id"), userId));
+        Query query = session.createQuery(cr);
+        return  query.getResultList();
     }
 }

@@ -1,9 +1,7 @@
 package es.captcha.repository;
 
-import es.captcha.domain.Graphic;
-import es.captcha.domain.GraphicValues;
-import es.captcha.domain.User;
-import es.captcha.domain.CaptchaSettings;
+import es.captcha.domain.*;
+
 import java.util.List;
 
 public interface Dao {
@@ -12,5 +10,6 @@ public interface Dao {
     List<User> getUsers();
     void saveOrUpdateUser(User user);
     void mergeGraphic(Graphic graphic);
+    List<Experience> getExperiencesByUser(int user);
 
 }

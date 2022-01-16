@@ -1,10 +1,7 @@
 package es.service;
 
-import es.captcha.domain.Graphic;
-import es.captcha.domain.GraphicValues;
-import es.captcha.domain.User;
+import es.captcha.domain.*;
 import es.captcha.repository.Dao;
-import es.captcha.domain.CaptchaSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -47,5 +44,8 @@ public class ServiceImpl implements Service {
     public void saveOrUpdateGraphicAndGraphicData(Graphic graphic){
         dao.mergeGraphic(graphic);
     }
+    public List<Experience> getExperiencesByUser(int userId){
+        return dao.getExperiencesByUser(userId);
+    };
 }
 

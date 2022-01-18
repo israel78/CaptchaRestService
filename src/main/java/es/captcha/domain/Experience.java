@@ -1,13 +1,12 @@
 package es.captcha.domain;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Set;
 
 @Data
@@ -20,6 +19,21 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "sub_title")
+    private String subTitle;
+
+    @Column(name = "start_date")
+    private Date startDate;
+
+    @Column(name = "end_date")
+    private Date endDate;
+
+    @Column(name = "url_imageExp")
+    private String urlImageExp;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "experience", cascade=CascadeType.ALL)
     @JsonManagedReference

@@ -5,24 +5,26 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "job_function")
-public class JobFunction {
-    @EqualsAndHashCode.Exclude
+@Table(name = "dev_tool_items")
+public class DevToolItems {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
-    @EqualsAndHashCode.Exclude
+
+    @Column(name = "name")
+    private String name;
+
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "experience_id")
-    private Experience experience;
-    @EqualsAndHashCode.Include
-    @Column(name ="Job_function_name")
-    private String jobFunctionName;
+    @ManyToMany(mappedBy = "devToolItems")
+    Set<Experience> experiences;
+
+
 }

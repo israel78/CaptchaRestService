@@ -11,5 +11,8 @@ public interface Dao {
     void saveOrUpdateUser(User user);
     void mergeGraphic(Graphic graphic);
     List<Experience> getExperiencesByUser(int user);
-
+    List<Experience> getExperiences();
+    List<DevToolItems> getDevToolsItems();
+    List<JobFunctionItems> getJobFunctionsItems();
+    List<SkillItem> getSkillItems();
 }

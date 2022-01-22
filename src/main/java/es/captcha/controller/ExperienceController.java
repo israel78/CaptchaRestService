@@ -4,6 +4,7 @@ import es.captcha.domain.Experience;
 import es.captcha.domain.Graphic;
 import es.captcha.domain.ResponseValues;
 import es.captcha.domain.User;
+import es.captcha.pojo.ExperienceItemWithStatus;
 import es.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,5 +38,14 @@ public class ExperienceController {
             return new ResponseEntity<List<Experience>>(experiences, HttpStatus.OK);
         } else
             return new ResponseEntity<List<Experience>>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
+    }
+    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @GetMapping(value = "/getexperienceitmes", produces = "application/json")
+    public ResponseEntity <List<ExperienceItemWithStatus>> getExperienceItemList(@RequestHeader(name = "Authorization") String apiKey
+            , @RequestParam(name="type") String type) {
+        if(apiKey.equals(key)) {
+            return new ResponseEntity<List<ExperienceItemWithStatus>>(service.getExperiencesListByType(type), HttpStatus.OK);
+        } else
+            return new ResponseEntity<List<ExperienceItemWithStatus>>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
     }
 }

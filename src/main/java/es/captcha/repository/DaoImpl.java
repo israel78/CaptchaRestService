@@ -70,7 +70,7 @@ public class DaoImpl implements Dao {
         Session session = em.unwrap(Session.class);
         session.merge(graphic);
     }
-
+    @Transactional
     public List<Experience> getExperiencesByUser(int userId){
         Session session = em.unwrap(Session.class);
         CriteriaBuilder cb = session.getCriteriaBuilder();
@@ -81,4 +81,44 @@ public class DaoImpl implements Dao {
         Query query = session.createQuery(cr);
         return  query.getResultList();
     }
+    @Transactional
+    public List<Experience> getExperiences(){
+        Session session = em.unwrap(Session.class);
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Experience> cr = cb.createQuery(Experience.class);
+        Root<Experience> root = cr.from(Experience.class);
+        cr.select(root);
+        Query query = session.createQuery(cr);
+        return query.getResultList();
+    }
+    @Transactional
+    public List<DevToolItems> getDevToolsItems(){
+        Session session = em.unwrap(Session.class);
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<DevToolItems> cr = cb.createQuery(DevToolItems.class);
+        Root<DevToolItems> root = cr.from(DevToolItems.class);
+        cr.select(root);
+        Query query = session.createQuery(cr);
+        return query.getResultList();
+    };
+    @Transactional
+    public List<JobFunctionItems> getJobFunctionsItems(){
+        Session session = em.unwrap(Session.class);
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<JobFunctionItems> cr = cb.createQuery(JobFunctionItems.class);
+        Root<JobFunctionItems> root = cr.from(JobFunctionItems.class);
+        cr.select(root);
+        Query query = session.createQuery(cr);
+        return query.getResultList();
+    };
+    @Transactional
+    public List<SkillItem> getSkillItems(){
+        Session session = em.unwrap(Session.class);
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<SkillItem> cr = cb.createQuery(SkillItem.class);
+        Root<SkillItem> root = cr.from(SkillItem.class);
+        cr.select(root);
+        Query query = session.createQuery(cr);
+        return query.getResultList();
+    };
 }

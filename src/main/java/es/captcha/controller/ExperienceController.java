@@ -1,10 +1,8 @@
 package es.captcha.controller;
 
-import es.captcha.domain.Experience;
-import es.captcha.domain.Graphic;
-import es.captcha.domain.ResponseValues;
-import es.captcha.domain.User;
+import es.captcha.domain.*;
 import es.captcha.pojo.ExperienceItemWithStatus;
+import es.captcha.pojo.Items;
 import es.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,5 +45,23 @@ public class ExperienceController {
             return new ResponseEntity<List<ExperienceItemWithStatus>>(service.getExperiencesListByType(type), HttpStatus.OK);
         } else
             return new ResponseEntity<List<ExperienceItemWithStatus>>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
+    }
+    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @PostMapping(value = "/setexperieneitems", produces = "application/json")
+    public ResponseEntity<ResponseValues> setGraphicData(@RequestHeader(name = "Authorization") String apiKey,
+                                                         @RequestBody Items items,
+                                                         @RequestParam (name="userid") int userId) {
+        ResponseValues result = new ResponseValues();
+        if(apiKey.equals(key)){
+            System.out.println("items");
+             service.saveOrUpdateExperieneItems(items);
+            result.setKey("resultado");
+            result.setValue("Frase actualizada correctamente");
+            return new ResponseEntity<ResponseValues>(result, HttpStatus.OK);
+        } else {
+            result.setKey("resultado");
+            result.setValue("No tienes permisos para realizar la operación");
+            return new ResponseEntity<ResponseValues>(result, HttpStatus.UNAUTHORIZED);
+        }
     }
 }

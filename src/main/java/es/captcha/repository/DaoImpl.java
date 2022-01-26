@@ -121,4 +121,19 @@ public class DaoImpl implements Dao {
         Query query = session.createQuery(cr);
         return query.getResultList();
     };
+    @Transactional
+    public void mergeSkillItems(SkillItem skillItem){
+        Session session = em.unwrap(Session.class);
+        session.merge(skillItem);
+    }
+    @Transactional
+    public void mergeDevToolsItems(DevToolItems devToolItems){
+        Session session = em.unwrap(Session.class);
+        session.merge(devToolItems);
+    }
+    @Transactional
+    public void mergeFunctionsItems(JobFunctionItems jobFunctionItems){
+        Session session = em.unwrap(Session.class);
+        session.merge(jobFunctionItems);
+    }
 }

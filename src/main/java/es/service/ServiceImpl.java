@@ -2,6 +2,7 @@ package es.service;
 
 import es.captcha.domain.*;
 import es.captcha.pojo.ExperienceItemWithStatus;
+import es.captcha.pojo.Items;
 import es.captcha.repository.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -130,6 +131,27 @@ public class ServiceImpl implements Service {
         }
         return experienceItemWithStatusList;
     }
+
+    @Override
+    public void saveOrUpdateExperieneItems(Items items) {
+        switch (items.getType()) {
+            case "skillsItems":
+                items.getValues().forEach(item->{
+                    SkillItem skillItem = new SkillItem();
+
+                });
+               // dao.mergeSkillItems();
+                break;
+            case "devToolsItems":
+              //  dao.mergeDevToolsItems();
+                break;
+            case "functionsItems":
+             //   dao.mergeFunctionsItems();
+                break;
+        }
+
+    }
+
 
 }
 

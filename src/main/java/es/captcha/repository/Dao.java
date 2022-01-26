@@ -1,6 +1,8 @@
 package es.captcha.repository;
 
 import es.captcha.domain.*;
+import org.hibernate.Session;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,4 +17,7 @@ public interface Dao {
     List<DevToolItems> getDevToolsItems();
     List<JobFunctionItems> getJobFunctionsItems();
     List<SkillItem> getSkillItems();
+    void mergeSkillItems(SkillItem skillItem);
+    void mergeDevToolsItems(DevToolItems devToolItems);
+    void mergeFunctionsItems(JobFunctionItems jobFunctionItems);
 }

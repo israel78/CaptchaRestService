@@ -60,7 +60,7 @@ public class HomeController {
                                                              @RequestParam (name="userid") int userId) {
         ResponseValues result = new ResponseValues();
         if(apiKey.equals(key)){
-            service.saveOrUpdateGraphicAndGraphicData(graphic);
+           service.saveOrUpdateGraphicAndGraphicData(graphic);
             result.setKey("resultado");
             result.setValue("Frase actualizada correctamente");
             return new ResponseEntity<ResponseValues>(result, HttpStatus.OK);

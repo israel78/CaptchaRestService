@@ -1,11 +1,8 @@
 package es.service;
 
-import es.captcha.domain.CaptchaSettings;
-import es.captcha.domain.Experience;
-import es.captcha.domain.Graphic;
-import es.captcha.domain.User;
+import es.captcha.domain.*;
 import es.captcha.pojo.ExperienceItemWithStatus;
-import org.springframework.http.ResponseEntity;
+import es.captcha.pojo.Items;
 
 import java.util.List;
 
@@ -27,4 +24,6 @@ public interface Service {
     List<Experience> getExperiencesByUser(int userId);
 
     List<ExperienceItemWithStatus> getExperiencesListByType(String type);
+
+    void saveOrUpdateExperieneItems(Items items);
 }

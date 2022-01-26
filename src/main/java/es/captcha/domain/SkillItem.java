@@ -10,6 +10,8 @@ import java.util.Set;
 @Entity
 @Table(name = "skill_item")
 public class SkillItem {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

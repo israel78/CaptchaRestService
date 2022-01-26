@@ -12,7 +12,7 @@ import java.util.Set;
 @ToString
 @Entity
 @Table(name = "job_function_items")
-public class JobFunctionItems {
+public class JobFunctionItems{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

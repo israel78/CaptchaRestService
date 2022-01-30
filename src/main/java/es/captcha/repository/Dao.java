@@ -17,7 +17,10 @@ public interface Dao {
     List<DevToolItems> getDevToolsItems();
     List<JobFunctionItems> getJobFunctionsItems();
     List<SkillItem> getSkillItems();
-    void mergeSkillItems(SkillItem skillItem);
-    void mergeDevToolsItems(DevToolItems devToolItems);
-    void mergeFunctionsItems(JobFunctionItems jobFunctionItems);
+    void mergeSkillItem(SkillItem skillItem);
+    void mergeDevToolsItem(DevToolItems devToolItems);
+    void mergeFunctionsItem(JobFunctionItems jobFunctionItems);
+    void deleteSkillItem(SkillItem skillItem);
+    void deleteDevToolItem(DevToolItems devToolItems);
+    void deleteJobFunctionItem(JobFunctionItems jobFunctionItems);
 }

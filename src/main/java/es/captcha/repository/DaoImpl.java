@@ -1,5 +1,6 @@
 package es.captcha.repository;
 
+import java.util.ArrayList;
 import  java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -55,10 +56,7 @@ public class DaoImpl implements Dao {
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
-
-
     }
-
     @Transactional
     public void saveOrUpdateGraphicData(GraphicValues graphicsValues){
         Session session = em.unwrap(Session.class);
@@ -122,18 +120,33 @@ public class DaoImpl implements Dao {
         return query.getResultList();
     };
     @Transactional
-    public void mergeSkillItems(SkillItem skillItem){
+    public void mergeSkillItem(SkillItem skillItem){
         Session session = em.unwrap(Session.class);
         session.merge(skillItem);
     }
     @Transactional
-    public void mergeDevToolsItems(DevToolItems devToolItems){
+    public void mergeDevToolsItem(DevToolItems devToolItems){
         Session session = em.unwrap(Session.class);
         session.merge(devToolItems);
     }
     @Transactional
-    public void mergeFunctionsItems(JobFunctionItems jobFunctionItems){
+    public void mergeFunctionsItem(JobFunctionItems jobFunctionItems){
         Session session = em.unwrap(Session.class);
         session.merge(jobFunctionItems);
+    }
+    @Transactional
+    public void deleteSkillItem(SkillItem skillItem){
+        Session session = em.unwrap(Session.class);
+        session.remove(session.find(SkillItem.class,skillItem.getId()));
+    }
+    @Transactional
+    public void deleteDevToolItem(DevToolItems devToolItems){
+        Session session = em.unwrap(Session.class);
+        session.delete(session.find(DevToolItems.class,devToolItems.getId()));
+    }
+    @Transactional
+    public void deleteJobFunctionItem(JobFunctionItems jobFunctionItems){
+        Session session = em.unwrap(Session.class);
+        session.remove(session.find(JobFunctionItems.class,jobFunctionItems.getId()));
     }
 }

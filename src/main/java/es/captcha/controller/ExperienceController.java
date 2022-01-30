@@ -56,7 +56,7 @@ public class ExperienceController {
             System.out.println("items");
              service.saveOrUpdateExperieneItems(items);
             result.setKey("resultado");
-            result.setValue("Frase actualizada correctamente");
+            result.setValue("Items actualizados correctamente");
             return new ResponseEntity<ResponseValues>(result, HttpStatus.OK);
         } else {
             result.setKey("resultado");

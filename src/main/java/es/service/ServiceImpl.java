@@ -17,6 +17,7 @@ public class ServiceImpl implements Service {
 
     @Autowired
     private Dao dao;
+    private List<ExperienceItemWithStatus> ExperienceItemWithStatusListNotAssociated;
 
     public CaptchaSettings getCaptchaSettings() {
         return dao.getCaptaSettings();
@@ -134,19 +135,85 @@ public class ServiceImpl implements Service {
 
     @Override
     public void saveOrUpdateExperieneItems(Items items) {
+
+        List<ExperienceItemWithStatus> ExperienceItemWithStatusList =
+                getExperiencesListByType(items.getType());
         switch (items.getType()) {
             case "skillsItems":
-                items.getValues().forEach(item->{
+                List<SkillItem> skillItems = new ArrayList<>();
+                items.getValues().forEach((k, v) ->{
                     SkillItem skillItem = new SkillItem();
-
+                    skillItem.setId(k.longValue()<0?null:k.longValue());
+                    skillItem.setName(v);
+                    dao.mergeSkillItem(skillItem);
                 });
-               // dao.mergeSkillItems();
+                //Se borran los que no estan que no estén asociados
+                ExperienceItemWithStatusListNotAssociated =
+                        ExperienceItemWithStatusList.stream()
+                                .filter(i->i.isStatus()==false).collect(Collectors.toList());
+                ExperienceItemWithStatusListNotAssociated.forEach(item-> {
+                    AtomicBoolean exists = new AtomicBoolean(false);
+                    SkillItem skillItem = new SkillItem();
+                    items.getValues().forEach((k, v) -> {
+                            if(k!=null&&v.equals(item.getName()))
+                                exists.set(true);
+                    });
+                    if(!exists.get()) {
+                        skillItem.setId((long) item.getId());
+                        skillItem.setName(item.getName());
+                        dao.deleteSkillItem(skillItem);
+                    }
+                });
                 break;
             case "devToolsItems":
-              //  dao.mergeDevToolsItems();
+                items.getValues().forEach((k, v) ->{
+                    DevToolItems devToolItems = new DevToolItems();
+                    devToolItems.setId(k.longValue()<0?null:k.longValue());
+                    devToolItems.setName(v);
+                    dao.mergeDevToolsItem(devToolItems);
+                });
+                //Se borran los que no estan que no estén asociados
+                ExperienceItemWithStatusListNotAssociated =
+                        ExperienceItemWithStatusList
+                                .stream().filter(i->i.isStatus()==false).collect(Collectors.toList());
+                ExperienceItemWithStatusListNotAssociated.forEach(item-> {
+                    AtomicBoolean exists = new AtomicBoolean(false);
+                    DevToolItems devToolItems = new DevToolItems();
+                    items.getValues().forEach((k, v) -> {
+                        if(k!=null&&v.equals(item.getName()))
+                            exists.set(true);
+                    });
+                    if(!exists.get()) {
+                        devToolItems.setId((long) item.getId());
+                        devToolItems.setName(item.getName());
+                        dao.deleteDevToolItem(devToolItems);
+                    }
+                });
                 break;
             case "functionsItems":
-             //   dao.mergeFunctionsItems();
+                items.getValues().forEach((k, v) ->{
+                    JobFunctionItems jobFunctionItems = new JobFunctionItems();
+                    jobFunctionItems.setId(k.longValue()<0?null:k.longValue());
+                    jobFunctionItems.setName(v);
+                    dao.mergeFunctionsItem(jobFunctionItems);
+                });
+                //Se borran los que no estan que no estén asociados
+                ExperienceItemWithStatusListNotAssociated =
+                        ExperienceItemWithStatusList
+                                .stream().filter(i->i.isStatus()==false).collect(Collectors.toList());
+                ExperienceItemWithStatusListNotAssociated.forEach(item-> {
+                    AtomicBoolean exists = new AtomicBoolean(false);
+                    JobFunctionItems jobFunctionItems = new JobFunctionItems();
+                    items.getValues().forEach((k, v) -> {
+                        if(k!=null&&v.equals(item.getName()))
+                            exists.set(true);
+                    });
+                    if(!exists.get()) {
+                        jobFunctionItems.setId((long) item.getId());
+                        jobFunctionItems.setName(item.getName());
+                        dao.deleteJobFunctionItem(jobFunctionItems);
+                    }
+                });
                 break;
         }
 

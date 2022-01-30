@@ -8,5 +8,5 @@ import java.util.Map;
 @Data
 public class Items {
     String type;
-    List<Map<Integer,String>> values;
+    Map<Integer,String> values;
 }

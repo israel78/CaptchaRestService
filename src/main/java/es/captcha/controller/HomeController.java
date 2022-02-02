@@ -26,7 +26,7 @@ public class HomeController {
     @Value( "${user.id.default}" )
     private int userIdDefault;
 
-    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @GetMapping(value = "/getgraphicdataandphrase", produces = "application/json")
     public ResponseEntity<User> getGraphicDataAndPhrase(@RequestHeader(name = "Authorization") String apiKey
    ,@RequestParam(name="userid") int userId) {
@@ -35,7 +35,7 @@ public class HomeController {
         else
             return new ResponseEntity<User>(new User(), HttpStatus.UNAUTHORIZED);
     }
-    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @PostMapping(value = "/setmportantphrase", produces = "application/json")
     public ResponseEntity<ResponseValues> setImportantPhrase(@RequestHeader(name = "Authorization") String apiKey,
                                                    @RequestBody User user) {
@@ -53,7 +53,7 @@ public class HomeController {
             return new ResponseEntity<ResponseValues>(result, HttpStatus.UNAUTHORIZED);
         }
     }
-    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @PostMapping(value = "/setgraphicdata", produces = "application/json")
     public ResponseEntity<ResponseValues> setGraphicData(@RequestHeader(name = "Authorization") String apiKey,
                                                              @RequestBody Graphic graphic,

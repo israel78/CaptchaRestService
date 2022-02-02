@@ -27,7 +27,7 @@ public class ExperienceController {
     @Value( "${user.id.default}" )
     private int userIdDefault;
 
-    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @GetMapping(value = "/getexperiencesofuser", produces = "application/json")
     public ResponseEntity <List<Experience>> getExperiencesOfUser(@RequestHeader(name = "Authorization") String apiKey
    , @RequestParam(name="userid") int userId) {
@@ -37,7 +37,7 @@ public class ExperienceController {
         } else
             return new ResponseEntity<List<Experience>>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
     }
-    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @GetMapping(value = "/getexperienceitmes", produces = "application/json")
     public ResponseEntity <List<ExperienceItemWithStatus>> getExperienceItemList(@RequestHeader(name = "Authorization") String apiKey
             , @RequestParam(name="type") String type) {
@@ -46,7 +46,7 @@ public class ExperienceController {
         } else
             return new ResponseEntity<List<ExperienceItemWithStatus>>(new ArrayList<>(), HttpStatus.UNAUTHORIZED);
     }
-    @CrossOrigin(origins = {"http://localhost:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @PostMapping(value = "/setexperieneitems", produces = "application/json")
     public ResponseEntity<ResponseValues> setGraphicData(@RequestHeader(name = "Authorization") String apiKey,
                                                          @RequestBody Items items,

@@ -25,7 +25,7 @@ public class CaptchaController {
 
     @Value( "${api.key}" )
     private String key;
-    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://192.168.1.10:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/login", produces = "application/json")
     public ResponseEntity<ResponseValues> login(@RequestBody User user,
                                                      HttpSession session) {
@@ -60,7 +60,7 @@ public class CaptchaController {
             return new ResponseEntity<>(result, HttpStatus.UNAUTHORIZED);
         }
     }
-    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://192.168.1.10:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/loginwithoutsession", produces = "application/json")
     public ResponseEntity<ResponseValues> login2(@RequestBody User user,
                                                 HttpSession session) {
@@ -78,7 +78,7 @@ public class CaptchaController {
             return new ResponseEntity<>(result, HttpStatus.UNAUTHORIZED);
         }
     }
-    @CrossOrigin(origins = {"http://localhost:8080","http://188.127.182.87","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:8080","http://192.168.1.10:8080","https://captcha-front.herokuapp.com","https://israelpersonalpage.herokuapp.com"}, allowCredentials = "true")
     @RequestMapping(value = "/getcaptcha")
     public ResponseEntity <ResponseValues> setPriceResponse(
             @RequestHeader(name = "Authorization") String apiKey,
